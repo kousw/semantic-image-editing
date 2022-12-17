@@ -388,7 +388,7 @@ class SemanticEditPipeline(DiffusionPipeline):
             latents = latents.to(self.device)
 
         # set timesteps
-        self.scheduler.set_timesteps(num_inference_steps)
+        self.scheduler.set_timesteps(num_inference_steps, self.device)
 
         # Some schedulers like PNDM have timesteps as arrays
         # It's more optimized to move all timesteps to correct device beforehand
