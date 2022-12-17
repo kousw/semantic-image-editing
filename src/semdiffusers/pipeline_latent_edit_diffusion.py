@@ -414,7 +414,7 @@ class SemanticEditPipeline(DiffusionPipeline):
             latent_model_input = (
                 torch.cat([latents] * (2 + enabled_editing_prompts)) if do_classifier_free_guidance else latents
             )
-            latent_model_input = self.scheduler.scale_model_input(latent_model_input, t)
+            latent_model_input = self.scheduler.scale_model_input(latent_model_input, t.cpu())
 
             # predict the noise residual
             noise_pred = self.unet(latent_model_input, t, encoder_hidden_states=text_embeddings).sample
